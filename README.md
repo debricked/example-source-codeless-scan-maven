@@ -15,7 +15,7 @@ This repository shows how this can be done for a simple Maven project.
 
 Here is a description of the two steps above in more details.
 
-If you want to look at the final version of a working file, look in the [.github/workflows/vulnerabilites.yml](.github/workflows/vulnerabilites.yml) workflow file in this repository.
+If you want to look at the final version of a working file, look in the [.github/workflows/vulnerabilities.yml](.github/workflows/vulnerabilities.yml) workflow file in this repository.
 The different parts of it are described below.
 
 ### Generate a list of dependencies
@@ -25,7 +25,7 @@ This can be done by running Maven `depgraph` plugin, and storing the output in a
 The output filename is important, the Debricked integration will look for these files in the next step.
 The output file _must_ be placed in the same directory as the `pom.xml` file it belongs to, otherwise Debricked cannot connect them together.
 
-In [.github/workflows/vulnerabilites.yml](.github/workflows/vulnerabilites.yml), this is the first part of the workflow, i.e., the following step:
+In [.github/workflows/vulnerabilities.yml](.github/workflows/vulnerabilities.yml), this is the first part of the workflow, i.e., the following step:
 
 ```
     - run: |
