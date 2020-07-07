@@ -1,0 +1,23 @@
+name: Vulnerability scan
+
+on: [push, pull_request]
+
+jobs:
+  vulnerabilities-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '13'
+    - run: |
+        mvn com.github.ferstl:depgraph-maven-plugin:graph \
+            -DgraphFormat=json \
+            -DrepeatTransitiveDependenciesInTextGraph \
+            -DoutputFileName=.debricked-maven-dependencies.json \
+            -DoutputDirectory=.
+    - uses: debricked/actions/scan@v1
+      env:
+        USERNAME: ${{ secrets.DEBRICKED_USERNAME }}
+        PASSWORD: ${{ secrets.DEBRICKED_PASSWORD }}
