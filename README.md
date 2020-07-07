@@ -15,7 +15,7 @@ This repository shows how this can be done for a simple Maven project.
 
 Here is a description of the two steps above in more details.
 
-If you want to look at the final version of a working file, look in the [.github/workflow/vulnerabilites.yml](.github/workflow/vulnerabilites.yml) workflow file in this repository.
+If you want to look at the final version of a working file, look in the [.github/workflows/vulnerabilites.yml](.github/workflows/vulnerabilites.yml) workflow file in this repository.
 The different parts of it are described below.
 
 ### Generate a list of dependencies
@@ -25,7 +25,7 @@ This can be done by running Maven `depgraph` plugin, and storing the output in a
 The output filename is important, the Debricked integration will look for these files in the next step.
 The output file _must_ be placed in the same directory as the `pom.xml` file it belongs to, otherwise Debricked cannot connect them together.
 
-In [.github/workflow/vulnerabilites.yml](.github/workflow/vulnerabilites.yml), this is the first part of the workflow, i.e., the following step:
+In [.github/workflows/vulnerabilites.yml](.github/workflows/vulnerabilites.yml), this is the first part of the workflow, i.e., the following step:
 
 ```
     - run: |
@@ -53,7 +53,7 @@ If you haven't already, you also need to choose which Java version to use before
 ### Upload dependency files to Debricked
 
 This is done with the usual Github Action, described in https://github.com/debricked/actions.
-As long as your files are named correctly (`.debricked-maven-dependencies.txt` for Maven), the action will automatically detect that you have generated the dependency file yourself.
+As long as your files are named correctly (`.debricked-maven-dependencies.json` for Maven), the action will automatically detect that you have generated the dependency file yourself.
 This means you should *not* enable the `UPLOAD_ALL_FILES` option.
 
 Example of this step:
