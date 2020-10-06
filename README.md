@@ -20,7 +20,7 @@ The different parts of it are described below.
 
 ### Generate a list of dependencies
 
-This can be done by running Maven `depgraph` plugin, and storing the output in a file.
+This can be done by running Maven `dependency:tree` plugin, and storing the output in a file.
 
 The output filename is important, the Debricked integration will look for these files in the next step.
 The output file _must_ be placed in the same directory as the `pom.xml` file it belongs to, otherwise Debricked cannot connect them together.
@@ -29,11 +29,9 @@ In [.github/workflows/vulnerabilities.yml](.github/workflows/vulnerabilities.yml
 
 ```
     - run: |
-        mvn com.github.ferstl:depgraph-maven-plugin:graph \
-            -DgraphFormat=json \
-            -DrepeatTransitiveDependenciesInTextGraph \
-            -DoutputFileName=.debricked-maven-dependencies.json \
-            -DoutputDirectory=.
+        mvn dependency:tree \
+            -DoutputFile=.debricked-maven-dependencies.tgf \
+            -DoutputType=tgf
 ```
 
 If you haven't already, you also need to choose which Java version to use beforehand, like below:
@@ -43,11 +41,9 @@ If you haven't already, you also need to choose which Java version to use before
       with:
         java-version: '13'
     - run: |
-        mvn com.github.ferstl:depgraph-maven-plugin:graph \
-            -DgraphFormat=json \
-            -DrepeatTransitiveDependenciesInTextGraph \
-            -DoutputFileName=.debricked-maven-dependencies.json \
-            -DoutputDirectory=.
+        mvn dependency:tree \
+            -DoutputFile=.debricked-maven-dependencies.tgf \
+            -DoutputType=tgf
 ```
 
 ### Upload dependency files to Debricked

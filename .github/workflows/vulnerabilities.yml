@@ -12,11 +12,9 @@ jobs:
       with:
         java-version: '13'
     - run: |
-        mvn com.github.ferstl:depgraph-maven-plugin:graph \
-            -DgraphFormat=json \
-            -DrepeatTransitiveDependenciesInTextGraph \
-            -DoutputFileName=.debricked-maven-dependencies.json \
-            -DoutputDirectory=.
+        mvn dependency:tree \
+            -DoutputFile=.debricked-maven-dependencies.tgf \
+            -DoutputType=tgf
     - uses: debricked/actions/scan@v1
       env:
         USERNAME: ${{ secrets.DEBRICKED_USERNAME }}
