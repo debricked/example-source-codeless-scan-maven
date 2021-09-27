@@ -57,8 +57,7 @@ Example of this step:
 ```
     - uses: debricked/actions/scan@v1
       env:
-        USERNAME: ${{ secrets.DEBRICKED_USERNAME }}
-        PASSWORD: ${{ secrets.DEBRICKED_PASSWORD }}
+        DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
 ```
 
 ## License
