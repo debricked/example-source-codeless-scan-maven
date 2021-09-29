@@ -7,7 +7,8 @@ Note that most other languages, such as JavaScript and Python, are already sourc
 To do this for Maven, two steps need to be performed.
 
 1. You need to generate a list of dependencies as a part of your own pipeline.
-2. These files must be uploaded to Debricked.
+2. Add caching for the list generation to make the action snappy.
+3. These lists must be uploaded to Debricked.
 
 This repository shows how this can be done for a simple Maven project.
 
@@ -44,6 +45,19 @@ If you haven't already, you also need to choose which Java version to use before
         mvn dependency:tree \
             -DoutputFile=.debricked-maven-dependencies.tgf \
             -DoutputType=tgf
+```
+
+### Add caching
+To enable caching we use GitHub`s own [cahe action](https://github.com/actions/cache).
+
+Example of caching:
+```
+- uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
 ```
 
 ### Upload dependency files to Debricked
