@@ -48,7 +48,7 @@ If you haven't already, you also need to choose which Java version to use before
 ```
 
 ### Add caching
-To enable caching we use GitHub`s own [cahe action](https://github.com/actions/cache).
+To enable caching we use GitHub`s own [cache action](https://github.com/actions/cache).
 
 Example of caching:
 ```
